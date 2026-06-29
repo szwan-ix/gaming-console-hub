@@ -1,11 +1,11 @@
 <?php
-// Railway uses environment variables for database connection
-$host = getenv('MYSQL_HOST') ?: getenv('MYSQL_URL') ?: 'localhost';
-$dbname = getenv('MYSQL_DATABASE') ?: 'gaming_console_hub';
-$username = getenv('MYSQL_USER') ?: getenv('MYSQL_USERNAME') ?: 'root';
-$password = getenv('MYSQL_PASSWORD') ?: '';
+// Supports Railway AND Render environment variable formats
+$host = getenv('MYSQL_HOST') ?: getenv('MYSQL_URL') ?: getenv('HOST') ?: 'localhost';
+$dbname = getenv('MYSQL_DATABASE') ?: getenv('DATABASE') ?: 'gaming_console_hub';
+$username = getenv('MYSQL_USER') ?: getenv('MYSQL_USERNAME') ?: getenv('USER') ?: 'root';
+$password = getenv('MYSQL_PASSWORD') ?: getenv('PASSWORD') ?: '';
 
-// Railway provides a single JAWSDB_URL or MYSQL_URL sometimes
+// Single connection string (JAWSDB/Railway format)
 $url = getenv('JAWSDB_URL') ?: getenv('MYSQL_URL') ?: '';
 if ($url) {
     $parsed = parse_url($url);
